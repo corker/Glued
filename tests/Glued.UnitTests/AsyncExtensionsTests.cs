@@ -14,19 +14,19 @@ namespace Glued.UnitTests
         public async Task Do_Should_Give_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .Do(_ => _.Should().Be(Target));
 
             await Target
-                .AsAsync()
-                .Do(_ => _.Should().Be(Target).AsAsync());
+                .AsTask()
+                .Do(_ => _.Should().Be(Target).AsTask());
         }
 
         [Fact]
         public async Task Do_Should_Return_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .Do(_ => { })
                 .Do(_ => _.Should().Be(Target));
         }
@@ -35,25 +35,25 @@ namespace Glued.UnitTests
         public async Task Take_Should_Give_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .Take(_ => _.Should().Be(Target));
 
             await Target
-                .AsAsync()
-                .Take(_ => _.Should().Be(Target).AsAsync());
+                .AsTask()
+                .Take(_ => _.Should().Be(Target).AsTask());
         }
 
         [Fact]
         public async Task Take_Should_Return_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .Take(_ => Expected)
                 .Take(_ => _.Should().Be(Expected));
 
             await Target
-                .AsAsync()
-                .Take(_ => Expected.AsAsync())
+                .AsTask()
+                .Take(_ => Expected.AsTask())
                 .Take(_ => _.Should().Be(Expected));
         }
 
@@ -61,16 +61,16 @@ namespace Glued.UnitTests
         public async Task With_Should_Give_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => _.Should().Be(Target).AsAsync(),
+                    _ => _.Should().Be(Target).AsTask(),
                     _ => Task.CompletedTask
                 );
 
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => _.Should().Be(Target).AsAsync(),
+                    _ => _.Should().Be(Target).AsTask(),
                     _ => { }
                 );
         }
@@ -79,17 +79,17 @@ namespace Glued.UnitTests
         public async Task With_Should_Pass_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => Expected.AsAsync(),
+                    _ => Expected.AsTask(),
                     _ => _.Should().Be(Expected)
                 );
 
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => Expected.AsAsync(),
-                    _ => _.Should().Be(Expected).AsAsync()
+                    _ => Expected.AsTask(),
+                    _ => _.Should().Be(Expected).AsTask()
                 );
         }
 
@@ -97,17 +97,17 @@ namespace Glued.UnitTests
         public async Task With_Should_Return_Expected_Value()
         {
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => _.ToString().AsAsync(),
+                    _ => _.ToString().AsTask(),
                     _ => Task.CompletedTask
                 )
                 .Do(_ => _.Should().Be(Target));
 
             await Target
-                .AsAsync()
+                .AsTask()
                 .With(
-                    _ => _.ToString().AsAsync(),
+                    _ => _.ToString().AsTask(),
                     _ => { }
                 )
                 .Do(_ => _.Should().Be(Target));

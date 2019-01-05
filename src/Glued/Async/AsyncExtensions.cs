@@ -5,7 +5,7 @@ namespace Glued.Async
 {
     public static class AsyncExtensions
     {
-        public static Task<T> AsAsync<T>(this T target)
+        public static Task<T> AsTask<T>(this T target)
         {
             return Task.FromResult(target);
         }
