@@ -1,4 +1,4 @@
-version: 1.0.{build}-pre
+version: 0.0.{build}-pre
 
 configuration: Release
 
