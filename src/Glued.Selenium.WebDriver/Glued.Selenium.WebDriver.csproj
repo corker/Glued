@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <Authors>Michael Borisov</Authors>
     <Copyright>Copyright Michael Borisov © 2018</Copyright>
-    <Description>Chain like a pro, make a fluent interface out of anything.</Description>
+    <Description>Chain like a pro, make a fluent interface out anything.</Description>
     <PackageTags>Fluent</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/corker/Glued/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/corker/Glued</PackageProjectUrl>
@@ -12,6 +12,8 @@
 
   <!-- common NuGet package refs that affect all projects -->
   <ItemGroup>
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
   </ItemGroup>
 
   <!-- common properties that affect all projects -->
@@ -32,6 +34,9 @@
     <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Glued\Glued.csproj" />
   </ItemGroup>
 
 </Project>

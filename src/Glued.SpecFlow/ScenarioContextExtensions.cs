@@ -1,0 +1,35 @@
+﻿using System;
+using TechTalk.SpecFlow;
+
+namespace Glued.SpecFlow
+{
+    public static class ScenarioContextExtensions
+    {
+        public static ScenarioContext UseWebDriver(this ScenarioContext context, Action<IWebDriver> action = null)
+        {
+            var featureContext = context.ScenarioContainer.Resolve<FeatureContext>();
+            var scenarioTitle = context.ScenarioInfo.Title;
+            var featureTitle = featureContext.FeatureInfo.Title;
+            return context.Do(_ =>
+                WebDriverFactory
+                    .Create(scenarioTitle, featureTitle)
+                    .Do(action.AsOptional())
+                    .Do(_.Set));
+        }
+
+        public static IWebDriver GetWebDriver(this ScenarioContext context)
+        {
+            return context.Get<IWebDriver>();
+        }
+
+        public static T With<T>(this ScenarioContext context, Func<IWebDriver, T> func)
+        {
+            return context.GetWebDriver().Take(func);
+        }
+
+        public static void Do<T>(this ScenarioContext context, Func<IWebDriver, T> func)
+        {
+            context.GetWebDriver().Take(func);
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFramework>net45</TargetFramework>
     <Authors>Michael Borisov</Authors>
     <Copyright>Copyright Michael Borisov © 2018</Copyright>
     <Description>Chain like a pro, make a fluent interface out of anything.</Description>
@@ -12,6 +12,7 @@
 
   <!-- common NuGet package refs that affect all projects -->
   <ItemGroup>
+    <PackageReference Include="SpecFlow" Version="2.4.1" />
   </ItemGroup>
 
   <!-- common properties that affect all projects -->
@@ -19,19 +20,5 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
-
-  <!-- .NET Standard 2.0 references, compilation flags and build options -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-  </ItemGroup>
-
-  <!-- .NET 4.0 references, compilation flags and build options -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
-    <DefineConstants>NET45;NETFULL</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
-  </ItemGroup>
 
 </Project>
