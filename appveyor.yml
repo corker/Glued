@@ -22,12 +22,15 @@ before_build:
 
 build_script:
   - cmd: dotnet build src\Glued --configuration %CONFIGURATION%
+  - cmd: dotnet build src\Glued.Selenium.WebDriver --configuration %CONFIGURATION%
 
 after_build:
   - cmd: dotnet pack src\Glued --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
+  - cmd: dotnet pack src\Glued.Selenium.WebDriver --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
 
 test_script:
   - cmd: dotnet test tests\Glued.UnitTests\Glued.UnitTests.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test tests\Glued.Selenium.WebDriver.SpecFlowTests\Glued.Selenium.WebDriver.SpecFlowTests.csproj --configuration %CONFIGURATION%
 
 artifacts:
   - path: nupkgs\*.nupkg
