@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Glued.Sync;
 
-namespace Glued
+namespace Glued.Sync
 {
     public static class ThenExtensions
     {

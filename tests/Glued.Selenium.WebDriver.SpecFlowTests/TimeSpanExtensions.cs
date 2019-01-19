@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Glued
+namespace Glued.Selenium.WebDriver.SpecFlowTests
 {
     public static class TimeSpanExtensions
     {
