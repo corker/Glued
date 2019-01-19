@@ -1,7 +1,6 @@
 ﻿Feature: Search
 
-Scenario: Search nuget.org for NOpenPage project
+Scenario: Search nuget.org for Glued project
 	Given I am on the nuget.org website
-	When I search for NOpenPage project
-	Then the NOpenPage project is present in the search result
-
+	When I search for Glued project
+	Then the Glued project is present in the search result

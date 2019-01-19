@@ -76,21 +76,21 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Features
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Search nuget.org for NOpenPage project")]
+        [Xunit.FactAttribute(DisplayName="Search nuget.org for Glued project")]
         [Xunit.TraitAttribute("FeatureTitle", "Search")]
-        [Xunit.TraitAttribute("Description", "Search nuget.org for NOpenPage project")]
-        public virtual void SearchNuget_OrgForNOpenPageProject()
+        [Xunit.TraitAttribute("Description", "Search nuget.org for Glued project")]
+        public virtual void SearchNuget_OrgForGluedProject()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search nuget.org for NOpenPage project", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search nuget.org for Glued project", null, ((string[])(null)));
 #line 3
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
  testRunner.Given("I am on the nuget.org website", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.When("I search for NOpenPage project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search for Glued project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.Then("the NOpenPage project is present in the search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Glued project is present in the search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

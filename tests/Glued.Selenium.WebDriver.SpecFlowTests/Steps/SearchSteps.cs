@@ -20,21 +20,21 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
             _context.Do(HomePage.Open);
         }
 
-        [When(@"I search for NOpenPage project")]
-        public void WhenISearchForNOpenPageProject()
+        [When(@"I search for (.*) project")]
+        public void WhenISearchForProject(string value)
         {
             _context
                 .With(HomePage.Ensure)
-                .Search("NOpenPage");
+                .Search(value);
         }
 
-        [Then(@"the NOpenPage project is present in the search result")]
-        public void ThenTheNOpenPageProjectIsPresentInTheSearchResult()
+        [Then(@"the (.*) project is present in the search result")]
+        public void ThenTheProjectIsPresentInTheSearchResult(string value)
         {
             _context
                 .With(HomePage.Ensure)
                 .ProjectList
-                .Contains("NOpenPage")
+                .Contains(value)
                 .Should().BeTrue();
         }
     }
