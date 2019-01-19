@@ -6,19 +6,19 @@ namespace Glued.Sync
 {
     public static class ThenExtensions
     {
-        public static Func<T2> Then<T1, T2>(this Func<T1> funcA, Func<Func<T1>, T2> funcB)
+        public static Func<T2> Then<T1, T2>(this Func<T1> source, Func<Func<T1>, T2> next)
         {
-            return () => funcB(funcA);
+            return () => next(source);
         }
 
-        public static Func<T> ThenDo<T>(this Func<T> func, Action<T> action)
+        public static Func<T> ThenDo<T>(this Func<T> source, Action<T> action)
         {
-            return () => func().Do(action);
+            return () => source().Do(action);
         }
 
-        public static Func<IEnumerable<T2>> ThenEach<T1, T2>(this Func<IEnumerable<T1>> funcA, Func<Func<T1>, T2> funcB)
+        public static Func<IEnumerable<T2>> ThenEach<T1, T2>(this Func<IEnumerable<T1>> source, Func<Func<T1>, T2> next)
         {
-            return () => funcA().Select(_ => _.AsFunc()).Select(funcB);
+            return () => source().Select(_ => _.AsFunc()).Select(next);
         }
     }
 }

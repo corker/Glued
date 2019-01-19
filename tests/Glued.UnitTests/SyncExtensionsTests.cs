@@ -28,14 +28,14 @@ namespace Glued.UnitTests
         public void Take_Should_Give_Expected_Value()
         {
             Target
-                .Take(_ => _.Should().Be(Target));
+                .Map(_ => _.Should().Be(Target));
         }
 
         [Fact]
         public void Take_Should_Return_Expected_Value()
         {
             Target
-                .Take(_ => Expected)
+                .Map(_ => Expected)
                 .Should().Be(Expected);
         }
 

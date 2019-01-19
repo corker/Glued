@@ -4,10 +4,10 @@ namespace Glued.Sync
 {
     public static class DoExtensions
     {
-        public static T Do<T>(this T target, Action<T> action)
+        public static T Do<T>(this T source, Action<T> action)
         {
-            action(target);
-            return target;
+            action(source);
+            return source;
         }
     }
 }

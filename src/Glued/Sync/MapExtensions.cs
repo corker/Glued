@@ -6,6 +6,11 @@ namespace Glued.Sync
 {
     public static class MapExtensions
     {
+        public static T1 Map<T, T1>(this T source, Func<T, T1> mapper)
+        {
+            return mapper(source);
+        }
+
         public static T Map<T>(this Func<T> source)
         {
             return source();

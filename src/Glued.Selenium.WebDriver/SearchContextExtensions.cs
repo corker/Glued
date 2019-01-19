@@ -7,19 +7,19 @@ namespace Glued.Selenium.WebDriver
 {
     public static class SearchContextExtensions
     {
-        public static Func<IWebElement> FindElement(this Func<ISearchContext> context, By by)
+        public static Func<IWebElement> FindElement(this Func<ISearchContext> source, By by)
         {
-            return () => context().FindElement(by);
+            return () => source().FindElement(by);
         }
 
-        public static Func<IEnumerable<IWebElement>> FindElements(this Func<ISearchContext> context, By by)
+        public static Func<IEnumerable<IWebElement>> FindElements(this Func<ISearchContext> source, By by)
         {
-            return () => context().FindElements(by);
+            return () => source().FindElements(by);
         }
 
-        public static Func<IWebElement> UntilElementFound(this Func<IWait<Func<IWebElement>>> context)
+        public static Func<IWebElement> UntilElementFound(this Func<IWait<Func<IWebElement>>> source)
         {
-            return context
+            return source
                 .IgnoreExceptionTypes(typeof(NotFoundException), typeof(NoSuchElementException))
                 .Until(_ => _());
         }

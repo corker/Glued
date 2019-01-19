@@ -5,18 +5,18 @@ namespace Glued.Async
 {
     public static class WithExtensions
     {
-        public static async Task<T> With<T, T1>(this Task<T> task, Func<T, Task<T1>> take, Action<T1> @do)
+        public static async Task<T> With<T, T1>(this Task<T> source, Func<T, Task<T1>> mapper, Action<T1> action)
         {
-            var target = await task;
-            @do(await take(target));
-            return target;
+            var context = await source;
+            action(await mapper(context));
+            return context;
         }
 
-        public static async Task<T> With<T, T1>(this Task<T> task, Func<T, Task<T1>> take, Func<T1, Task> @do)
+        public static async Task<T> With<T, T1>(this Task<T> source, Func<T, Task<T1>> mapper, Func<T1, Task> action)
         {
-            var target = await task;
-            await @do(await take(target));
-            return target;
+            var context = await source;
+            await action(await mapper(context));
+            return context;
         }
     }
 }

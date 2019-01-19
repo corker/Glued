@@ -36,11 +36,11 @@ namespace Glued.UnitTests
         {
             await Target
                 .AsTask()
-                .Take(_ => _.Should().Be(Target));
+                .Map(_ => _.Should().Be(Target));
 
             await Target
                 .AsTask()
-                .Take(_ => _.Should().Be(Target).AsTask());
+                .Map(_ => _.Should().Be(Target).AsTask());
         }
 
         [Fact]
@@ -48,13 +48,13 @@ namespace Glued.UnitTests
         {
             await Target
                 .AsTask()
-                .Take(_ => Expected)
-                .Take(_ => _.Should().Be(Expected));
+                .Map(_ => Expected)
+                .Map(_ => _.Should().Be(Expected));
 
             await Target
                 .AsTask()
-                .Take(_ => Expected.AsTask())
-                .Take(_ => _.Should().Be(Expected));
+                .Map(_ => Expected.AsTask())
+                .Map(_ => _.Should().Be(Expected));
         }
 
         [Fact]

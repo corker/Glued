@@ -27,12 +27,12 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests
 
         public static T With<T>(this ScenarioContext context, Func<IWebDriver, T> func)
         {
-            return context.GetWebDriver().Take(func);
+            return context.GetWebDriver().Map(func);
         }
 
         public static void Do<T>(this ScenarioContext context, Func<IWebDriver, T> func)
         {
-            context.GetWebDriver().Take(func);
+            context.GetWebDriver().Map(func);
         }
     }
 }

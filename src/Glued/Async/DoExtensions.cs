@@ -5,18 +5,18 @@ namespace Glued.Async
 {
     public static class DoExtensions
     {
-        public static async Task<T> Do<T>(this Task<T> task, Action<T> action)
+        public static async Task<T> Do<T>(this Task<T> source, Action<T> action)
         {
-            var target = await task;
-            action(target);
-            return target;
+            var context = await source;
+            action(context);
+            return context;
         }
 
-        public static async Task<T> Do<T>(this Task<T> task, Func<T, Task> func)
+        public static async Task<T> Do<T>(this Task<T> source, Func<T, Task> action)
         {
-            var target = await task;
-            await func(target);
-            return target;
+            var context = await source;
+            await action(context);
+            return context;
         }
     }
 }

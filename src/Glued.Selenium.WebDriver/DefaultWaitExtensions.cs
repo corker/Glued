@@ -7,42 +7,42 @@ namespace Glued.Selenium.WebDriver
 {
     public static class DefaultWaitExtensions
     {
-        public static Func<IWait<Func<T>>> Wait<T>(this Func<T> func)
+        public static Func<IWait<Func<T>>> Wait<T>(this Func<T> source)
         {
-            return () => new DefaultWait<Func<T>>(func);
+            return () => new DefaultWait<Func<T>>(source);
         }
 
-        public static Func<IWait<Func<T>>> WithInterval<T>(this Func<IWait<Func<T>>> context, TimeSpan value)
+        public static Func<IWait<Func<T>>> WithInterval<T>(this Func<IWait<Func<T>>> source, TimeSpan value)
         {
-            return () => context().Do(_ => _.PollingInterval = value);
+            return () => source().Do(_ => _.PollingInterval = value);
         }
 
-        public static Func<IWait<Func<T>>> WithMessage<T>(this Func<IWait<Func<T>>> context, string value)
+        public static Func<IWait<Func<T>>> WithMessage<T>(this Func<IWait<Func<T>>> source, string value)
         {
-            return () => context().Do(_ => _.Message = value);
+            return () => source().Do(_ => _.Message = value);
         }
 
-        public static Func<IWait<Func<T>>> WithTimeout<T>(this Func<IWait<Func<T>>> context, TimeSpan value)
+        public static Func<IWait<Func<T>>> WithTimeout<T>(this Func<IWait<Func<T>>> source, TimeSpan value)
         {
-            return () => context().Do(_ => _.Timeout = value);
+            return () => source().Do(_ => _.Timeout = value);
         }
 
         public static Func<IWait<Func<T>>>
-            IgnoreExceptionTypes<T>(this Func<IWait<Func<T>>> context, Type type, params Type[] types)
+            IgnoreExceptionTypes<T>(this Func<IWait<Func<T>>> source, Type type, params Type[] types)
         {
-            return () => context().Do(_ => _.IgnoreExceptionTypes(type.Union(types).ToArray()));
+            return () => source().Do(_ => _.IgnoreExceptionTypes(type.Union(types).ToArray()));
         }
 
         public static Func<T1>
-            Until<T, T1>(this Func<IWait<Func<T>>> context, Func<Func<T>, T1> condition) where T : class
+            Until<T, T1>(this Func<IWait<Func<T>>> source, Func<Func<T>, T1> condition) where T : class
         {
-            return () => context().Until(condition);
+            return () => source().Until(condition);
         }
 
         public static T1
-            Map<T, T1>(this Func<IWait<Func<T>>> context, Func<Func<T>, T1> condition) where T : class
+            Map<T, T1>(this Func<IWait<Func<T>>> source, Func<Func<T>, T1> condition) where T : class
         {
-            return context().Until(condition);
+            return source().Until(condition);
         }
     }
 }
