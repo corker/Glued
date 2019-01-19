@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <Authors>Michael Borisov</Authors>
     <Copyright>Copyright Michael Borisov © 2018</Copyright>
-    <Description>Chain like a pro, make a fluent interface out anything.</Description>
+    <Description>Chain like a pro, make a fluent interface out of anything.</Description>
     <PackageTags>Fluent</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/corker/Glued/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/corker/Glued</PackageProjectUrl>
