@@ -8,14 +8,14 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
 {
     public class HomePage
     {
-        public static readonly Func<ITestOutputHelper, IWebDriver, HomePage> Ensure = (helper, driver) =>
+        public static readonly Func<IWebDriver, ITestOutputHelper, HomePage> Ensure = (driver, helper) =>
         {
             driver.Url.Should().StartWith("https://www.nuget.org/");
             return new HomePage(driver.AsFunc());
         };
 
 
-        public static readonly Func<ITestOutputHelper, IWebDriver, HomePage> Open = (helper, driver) =>
+        public static readonly Func<IWebDriver, ITestOutputHelper, HomePage> Open = (driver, helper) =>
         {
             driver.Navigate().GoToUrl("https://www.nuget.org/");
             return new HomePage(driver.AsFunc());
