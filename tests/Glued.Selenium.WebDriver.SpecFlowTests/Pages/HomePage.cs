@@ -2,11 +2,25 @@
 using FluentAssertions;
 using Glued.Sync;
 using OpenQA.Selenium;
+using Xunit.Abstractions;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
 {
     public class HomePage
     {
+        public static readonly Func<ITestOutputHelper, IWebDriver, HomePage> Ensure = (helper, driver) =>
+        {
+            driver.Url.Should().StartWith("https://www.nuget.org/");
+            return new HomePage(driver.AsFunc());
+        };
+
+
+        public static readonly Func<ITestOutputHelper, IWebDriver, HomePage> Open = (helper, driver) =>
+        {
+            driver.Navigate().GoToUrl("https://www.nuget.org/");
+            return new HomePage(driver.AsFunc());
+        };
+
         private HomePage(Func<IWebDriver> driver)
         {
             Driver = driver;
@@ -15,19 +29,6 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
         public Func<IWebDriver> Driver { get; }
 
         public ProjectListControl ProjectList => new ProjectListControl(Driver);
-
-
-        public static HomePage Open(IWebDriver driver)
-        {
-            driver.Navigate().GoToUrl("https://www.nuget.org/");
-            return new HomePage(driver.AsFunc());
-        }
-
-        public static HomePage Ensure(IWebDriver driver)
-        {
-            driver.Url.Should().StartWith("https://www.nuget.org/");
-            return new HomePage(driver.AsFunc());
-        }
 
         public void Search(string value)
         {
