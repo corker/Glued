@@ -21,15 +21,18 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
         [Given(@"I am on the nuget\.org website")]
         public void GivenIAmOnTheNuget_OrgWebsite()
         {
-            _context.With(HomePage.Open)(_helper);
+            _context
+                .GetWebDriver()
+                .Do(HomePage.Open)(_helper);
         }
 
         [When(@"I search for (.*) project")]
         public void WhenISearchForProject(string value)
         {
             _context
-                .With(HomePage.Ensure)(_helper)
-                .Do(_ => _.Search(value))
+                .GetWebDriver()
+                .Map(HomePage.Ensure)(_helper)
+                .Do(_ => _.Search)(value)
                 .Do(_ => _helper.WriteLine($"Search for {value} project"));
         }
 
@@ -37,7 +40,8 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
         public void ThenTheProjectIsPresentInTheSearchResult(string value)
         {
             _context
-                .With(HomePage.Ensure)(_helper)
+                .GetWebDriver()
+                .Map(HomePage.Ensure)(_helper)
                 .ProjectList
                 .Contains(value)
                 .Should().BeTrue();

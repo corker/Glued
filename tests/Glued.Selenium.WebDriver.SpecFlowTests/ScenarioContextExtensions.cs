@@ -24,41 +24,5 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests
         {
             return context.Get<IWebDriver>();
         }
-
-        public static T With<T>(this ScenarioContext context, Func<IWebDriver, T> func)
-        {
-            return context.GetWebDriver().Map(func);
-        }
-
-        public static Func<T, TR>
-            With<T, TR>(this ScenarioContext context, Func<IWebDriver, T, TR> mapper)
-        {
-            return context.GetWebDriver().Map(mapper.Curry());
-        }
-
-        public static Func<T1, Func<T2, TR>>
-            With<T1, T2, TR>(this ScenarioContext context, Func<IWebDriver, T1, T2, TR> mapper)
-        {
-            return context.GetWebDriver().Map(mapper.Curry());
-        }
-
-        public static void Do<T>(this ScenarioContext context, Func<IWebDriver, T> func)
-        {
-            context.With(func);
-        }
-
-        public static Action<T>
-            Do<T, TR>(this ScenarioContext context, Func<IWebDriver, T, TR> mapper)
-        {
-            Action<IWebDriver, T> action = (x, y) => { mapper(x, y); };
-            return context.GetWebDriver().Map(action.Curry());
-        }
-
-        public static Func<T1, Action<T2>>
-            Do<T1, T2, TR>(this ScenarioContext context, Func<IWebDriver, T1, T2, TR> mapper)
-        {
-            Action<IWebDriver, T1, T2> action = (x, y, z) => { mapper(x, y, z); };
-            return context.GetWebDriver().Map(action.Curry());
-        }
     }
 }

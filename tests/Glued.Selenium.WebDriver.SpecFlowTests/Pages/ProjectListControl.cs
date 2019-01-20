@@ -2,27 +2,30 @@
 using System.Linq;
 using Glued.Sync;
 using OpenQA.Selenium;
+using Xunit.Abstractions;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
 {
     public class ProjectListControl
     {
-        public ProjectListControl(Func<IWebDriver> driver)
+        private readonly Func<IWebDriver> _driver;
+        private readonly ITestOutputHelper _helper;
+
+        public ProjectListControl(IWebDriver driver, ITestOutputHelper helper)
         {
-            Driver = driver;
+            _helper = helper;
+            _driver = driver.AsFunc();
         }
 
-        public Func<IWebDriver> Driver { get; }
+        public Func<IWebElement> Element =>
+            _driver
+                .FindElement(By.ClassName("list-packages"))
+                .Wait()
+                .WithTimeout(5.Seconds())
+                .UntilElementFound();
 
-        public Func<IWebElement> Element => Driver
-            .FindElement(By.ClassName("list-packages"))
-            .Wait()
-            .WithTimeout(5.Seconds())
-            .UntilElementFound();
-
-        public bool Contains(string value)
-        {
-            return Element
+        public Func<string, bool> Contains => value =>
+            Element
                 .FindElements(By.TagName("article"))
                 .Cache()
                 .ThenEach(_ => _
@@ -35,6 +38,5 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
                 .IgnoreExceptionTypes(typeof(WebDriverTimeoutException))
                 .WithMessage($"Package {value} not found.")
                 .Map(_ => _.MapEach().Any(x => x.Text == value));
-        }
     }
 }

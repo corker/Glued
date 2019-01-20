@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Glued.Selenium.WebDriver.SpecFlowTests
+namespace Glued.Sync
 {
     /// <summary>
     ///     https://weblogs.asp.net/dixin/functional-csharp-higher-order-function-currying-and-first-class-function
     /// </summary>
-    public static class FuncExtensions
+    public static class CurryFuncExtensions
     {
         // Transform (T1, T2) -> TResult
         // to T1 -> T2 -> TResult.

@@ -6,27 +6,68 @@ namespace Glued.Sync
 {
     public static class MapExtensions
     {
-        public static T1 Map<T, T1>(this T source, Func<T, T1> mapper)
-        {
-            return mapper(source);
-        }
-
-        public static T Map<T>(this Func<T> source)
+        public static T
+            Map<T>(this Func<T> source)
         {
             return source();
         }
 
-        public static T2 Map<T1, T2>(this Func<T1> source, Func<T1, T2> mapper)
+        public static TR
+            Map<T, TR>(this T source, Func<T, TR> mapper)
+        {
+            return mapper(source);
+        }
+
+        public static Func<T1, TR>
+            Map<T, T1, TR>(this T source, Func<T, T1, TR> mapper)
+        {
+            return mapper.Curry()(source);
+        }
+
+        public static Func<T1, Func<T2, TR>>
+            Map<T, T1, T2, TR>(this T source, Func<T, T1, T2, TR> mapper)
+        {
+            return mapper.Curry()(source);
+        }
+
+        public static Func<T1, Func<T2, Func<T3, TR>>>
+            Map<T, T1, T2, T3, TR>(this T source, Func<T, T1, T2, T3, TR> mapper)
+        {
+            return mapper.Curry()(source);
+        }
+
+        public static TR
+            Map<T, TR>(this Func<T> source, Func<T, TR> mapper)
         {
             return mapper(source());
         }
 
-        public static IEnumerable<T> MapEach<T>(this Func<IEnumerable<Func<T>>> source)
+        public static Func<T1, TR>
+            Map<T, T1, TR>(this Func<T> source, Func<T, T1, TR> mapper)
+        {
+            return mapper.Curry()(source());
+        }
+
+        public static Func<T1, Func<T2, TR>>
+            Map<T, T1, T2, TR>(this Func<T> source, Func<T, T1, T2, TR> mapper)
+        {
+            return mapper.Curry()(source());
+        }
+
+        public static Func<T1, Func<T2, Func<T3, TR>>>
+            Map<T, T1, T2, T3, TR>(this Func<T> source, Func<T, T1, T2, T3, TR> mapper)
+        {
+            return mapper.Curry()(source());
+        }
+
+        public static IEnumerable<T>
+            MapEach<T>(this Func<IEnumerable<Func<T>>> source)
         {
             return source().Select(_ => _());
         }
 
-        public static IEnumerable<T2> MapEach<T1, T2>(this Func<IEnumerable<T1>> source, Func<T1, T2> mapper)
+        public static IEnumerable<TR>
+            MapEach<T, TR>(this Func<IEnumerable<T>> source, Func<T, TR> mapper)
         {
             return source().Select(mapper);
         }
