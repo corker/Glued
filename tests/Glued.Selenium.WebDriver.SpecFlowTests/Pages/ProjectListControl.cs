@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
+using Glued.Selenium.WebDriver.SpecFlowTests.Services;
 using Glued.Sync;
 using OpenQA.Selenium;
-using Xunit.Abstractions;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
 {
     public class ProjectListControl
     {
         private readonly Func<IWebDriver> _driver;
-        private readonly ITestOutputHelper _helper;
+        private readonly ILogger _logger;
 
-        public ProjectListControl(IWebDriver driver, ITestOutputHelper helper)
+        public ProjectListControl(IWebDriver driver, ILogger logger)
         {
-            _helper = helper;
+            _logger = logger;
             _driver = driver.AsFunc();
         }
 

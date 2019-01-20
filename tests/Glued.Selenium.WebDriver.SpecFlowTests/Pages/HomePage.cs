@@ -1,32 +1,32 @@
 ﻿using System;
 using FluentAssertions;
+using Glued.Selenium.WebDriver.SpecFlowTests.Services;
 using Glued.Sync;
 using OpenQA.Selenium;
-using Xunit.Abstractions;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
 {
     public class HomePage
     {
         private readonly IWebDriver _driver;
-        private readonly ITestOutputHelper _helper;
+        private readonly ILogger _logger;
 
-        private HomePage(IWebDriver driver, ITestOutputHelper helper)
+        private HomePage(IWebDriver driver, ILogger logger)
         {
-            _helper = helper;
+            _logger = logger;
             _driver = driver;
         }
 
-        public static Func<IWebDriver, ITestOutputHelper, HomePage> Ensure => (driver, helper) =>
+        public static Func<IWebDriver, ILogger, HomePage> Ensure => (driver, logger) =>
         {
             driver.Url.Should().StartWith("https://www.nuget.org/");
-            return new HomePage(driver, helper);
+            return new HomePage(driver, logger);
         };
 
-        public static Func<IWebDriver, ITestOutputHelper, HomePage> Open => (driver, helper) =>
+        public static Func<IWebDriver, ILogger, HomePage> Open => (driver, logger) =>
         {
             driver.Navigate().GoToUrl("https://www.nuget.org/");
-            return new HomePage(driver, helper);
+            return new HomePage(driver, logger);
         };
 
         public Action<string> Search => value =>
@@ -38,6 +38,6 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
                 .Do(_ => _.SendKeys(Keys.Enter));
         };
 
-        public ProjectListControl ProjectList => new ProjectListControl(_driver, _helper);
+        public ProjectListControl ProjectList => new ProjectListControl(_driver, _logger);
     }
 }

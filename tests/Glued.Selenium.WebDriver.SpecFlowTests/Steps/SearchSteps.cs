@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Glued.Selenium.WebDriver.SpecFlowTests.Pages;
+using Glued.Selenium.WebDriver.SpecFlowTests.Services;
 using Glued.Sync;
 using TechTalk.SpecFlow;
 using Xunit.Abstractions;
@@ -10,12 +11,12 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
     public class SearchSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ITestOutputHelper _helper;
+        private readonly ILogger _logger;
 
         public SearchSteps(ScenarioContext context, ITestOutputHelper helper)
         {
             _context = context;
-            _helper = helper;
+            _logger = new Logger(helper);
         }
 
         [Given(@"I am on the nuget\.org website")]
@@ -23,7 +24,8 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
         {
             _context
                 .GetWebDriver()
-                .Do(HomePage.Open)(_helper);
+                .Do(_ => _logger.WriteLine("Navigating to nuget.org home page..."))
+                .Do(HomePage.Open)(_logger);
         }
 
         [When(@"I search for (.*) project")]
@@ -31,9 +33,11 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
         {
             _context
                 .GetWebDriver()
-                .Map(HomePage.Ensure)(_helper)
-                .Do(_ => _.Search)(value)
-                .Do(_ => _helper.WriteLine($"Search for {value} project"));
+                .Map(HomePage.Ensure)(_logger)
+                .Do(_ => _.Search)
+                .OnEnter(x => _logger.WriteLine($"-> Search: {x}"))
+                .OnExit((x, _) => _logger.WriteLine($"<- Search: {x}"))
+                (value);
         }
 
         [Then(@"the (.*) project is present in the search result")]
@@ -41,9 +45,9 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
         {
             _context
                 .GetWebDriver()
-                .Map(HomePage.Ensure)(_helper)
+                .Map(HomePage.Ensure)(_logger)
                 .ProjectList
-                .Contains(value)
+                .Contains.Log(_logger)(value)
                 .Should().BeTrue();
         }
     }

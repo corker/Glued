@@ -5,12 +5,12 @@ namespace Glued.Async
 {
     public static class MapExtensions
     {
-        public static async Task<T1> Map<T, T1>(this Task<T> source, Func<T, T1> mapper)
+        public static async Task<TR> Map<T, TR>(this Task<T> source, Func<T, TR> mapper)
         {
             return mapper(await source);
         }
 
-        public static async Task<T1> Map<T, T1>(this Task<T> source, Func<T, Task<T1>> mapper)
+        public static async Task<TR> Map<T, TR>(this Task<T> source, Func<T, Task<TR>> mapper)
         {
             return await mapper(await source);
         }

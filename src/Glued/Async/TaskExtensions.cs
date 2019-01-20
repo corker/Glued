@@ -4,9 +4,9 @@ namespace Glued.Async
 {
     public static class TaskExtensions
     {
-        public static Task<T> AsTask<T>(this T source)
+        public static Task<TR> AsTask<TR>(this TR @const)
         {
-            return Task.FromResult(source);
+            return Task.FromResult(@const);
         }
     }
 }

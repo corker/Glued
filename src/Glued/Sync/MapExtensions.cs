@@ -6,8 +6,8 @@ namespace Glued.Sync
 {
     public static class MapExtensions
     {
-        public static T
-            Map<T>(this Func<T> source)
+        public static TR
+            Map<TR>(this Func<TR> source)
         {
             return source();
         }
