@@ -22,17 +22,19 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
                 .FindElement(By.ClassName("list-packages"))
                 .Wait()
                 .WithTimeout(5.Seconds())
-                .UntilElementFound();
+                .UntilElementFound()
+                .Cache();
 
         public Func<string, bool> Contains => value =>
             Element
                 .FindElements(By.TagName("article"))
-                .Cache()
+                .ThenDo(_ => _logger.WriteLine("Packages:"))
                 .ThenEach(_ => _
                     .FindElement(By.ClassName("package-title"))
                     .Wait()
                     .WithTimeout(1.Second())
-                    .UntilElementFound())
+                    .UntilElementFound()
+                    .ThenDo(x => _logger.WriteLine($"-> {x.Text}")))
                 .Wait()
                 .WithTimeout(5.Seconds())
                 .IgnoreExceptionTypes(typeof(WebDriverTimeoutException))
