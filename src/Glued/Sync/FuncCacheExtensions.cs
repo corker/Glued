@@ -2,7 +2,7 @@
 
 namespace Glued.Sync
 {
-    public static class FuncExtensions
+    public static class FuncCacheExtensions
     {
         public static Func<T> Cache<T>(this Func<T> source)
         {

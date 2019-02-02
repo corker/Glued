@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Glued.Sync
 {
-    public static class ActionTimeExtensions
+    public static class ActionStopwatchExtensions
     {
         public static Action<T>
             Stopwatch<T>(this Action<T> source, Action<T, Stopwatch> action)
