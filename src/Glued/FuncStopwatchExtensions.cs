@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class FuncStopwatchExtensions
     {
@@ -18,8 +18,8 @@ namespace Glued.Sync
             };
         }
 
-        public static Func<T, TR>
-            Stopwatch<T, TR>(this Func<T, TR> source, Action<T, TR, Stopwatch> action)
+        public static Func<T1, TR>
+            Stopwatch<T1, TR>(this Func<T1, TR> source, Action<T1, TR, Stopwatch> action)
         {
             return t =>
             {

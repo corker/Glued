@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class ActionStopwatchExtensions
     {
-        public static Action<T>
-            Stopwatch<T>(this Action<T> source, Action<T, Stopwatch> action)
+        public static Action<T1>
+            Stopwatch<T1>(this Action<T1> source, Action<T1, Stopwatch> action)
         {
-            return t =>
+            return t1 =>
             {
                 var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-                source(t);
+                source(t1);
                 stopwatch.Stop();
-                action(t, stopwatch);
+                action(t1, stopwatch);
             };
         }
 

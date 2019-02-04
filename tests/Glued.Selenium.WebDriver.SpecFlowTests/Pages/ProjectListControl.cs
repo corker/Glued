@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Glued.Selenium.WebDriver.SpecFlowTests.Services;
-using Glued.Sync;
 using OpenQA.Selenium;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages

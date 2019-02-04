@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Glued.Sync
+namespace Glued
 {
     /// <summary>
     ///     https://weblogs.asp.net/dixin/functional-csharp-higher-order-function-currying-and-first-class-function

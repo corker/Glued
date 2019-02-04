@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class FuncThenEachExtensions
     {

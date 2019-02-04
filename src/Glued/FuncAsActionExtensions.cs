@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class FuncAsActionExtensions
     {

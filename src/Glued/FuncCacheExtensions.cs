@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class FuncCacheExtensions
     {
-        public static Func<T> Cache<T>(this Func<T> source)
+        public static Func<TR> Cache<TR>(this Func<TR> source)
         {
-            var lazy = new Lazy<T>(source);
+            var lazy = new Lazy<TR>(source);
             return () => lazy.Value;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Glued.Sync;
+using Glued.Collections.Generic;
 using OpenQA.Selenium.Support.UI;
 
 namespace Glued.Selenium.WebDriver

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Glued.Sync
+namespace Glued
 {
     public static class FuncMapEachExtensions
     {
-        public static IEnumerable<T>
-            MapEach<T>(this Func<IEnumerable<Func<T>>> source)
+        public static IEnumerable<TR>
+            MapEach<TR>(this Func<IEnumerable<Func<TR>>> source)
         {
             return source().Select(_ => _());
         }

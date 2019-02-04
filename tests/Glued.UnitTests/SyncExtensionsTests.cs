@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Glued.Sync;
 using Xunit;
 
 namespace Glued.UnitTests

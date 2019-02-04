@@ -11,8 +11,6 @@
   </PropertyGroup>
 
   <!-- common NuGet package refs that affect all projects -->
-  <ItemGroup>
-  </ItemGroup>
 
   <!-- common properties that affect all projects -->
   <PropertyGroup>

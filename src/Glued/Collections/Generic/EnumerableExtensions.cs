@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Glued
+namespace Glued.Collections.Generic
 {
     public static class EnumerableExtensions
     {

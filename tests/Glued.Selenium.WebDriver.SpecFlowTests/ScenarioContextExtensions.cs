@@ -1,6 +1,5 @@
 ﻿using System;
 using Glued.Selenium.WebDriver.SpecFlowTests.Services;
-using Glued.Sync;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 

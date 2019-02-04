@@ -1,5 +1,4 @@
-﻿using Glued.Sync;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
 {

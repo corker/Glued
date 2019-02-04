@@ -1,9 +1,6 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Glued.Selenium.WebDriver.SpecFlowTests.Pages;
 using Glued.Selenium.WebDriver.SpecFlowTests.Services;
-using Glued.Sync;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Xunit.Abstractions;
 
@@ -36,10 +33,11 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Steps
             _context
                 .GetWebDriver()
                 .Map(HomePage.Ensure)(_logger)
-                .Do(_ => _.Search
+                .Do(_ => _
+                    .Do(x => _logger.WriteLine($"Enter: Search({x})"))
+                    .Search
                     .Stopwatch((x, s) => _logger.WriteLine($"Search({x}) execution time {s.ElapsedMilliseconds}ms"))
-                    .OnEnter(x => _logger.WriteLine($"Enter: Search({x})"))
-                    .OnExit(x => _logger.WriteLine($"Exit:  Search({x})"))
+                    .ThenDo(x => _logger.WriteLine($"Exit:  Search({x})"))
                 )
                 (value);
         }
