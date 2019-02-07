@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static class ActionAsOptionalExtensions
+    public static class AsOptionalExtensions
     {
         public static Action<T1> AsOptional<T1>(this Action<T1> source)
         {

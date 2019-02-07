@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static class FuncCacheExtensions
+    public static class CacheExtensions
     {
         public static Func<TR> Cache<TR>(this Func<TR> source)
         {

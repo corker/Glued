@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Glued
 {
-    public static class FuncMapEachExtensions
+    public static class MapEachExtensions
     {
         public static IEnumerable<TR>
             MapEach<TR>(this Func<IEnumerable<Func<TR>>> source)

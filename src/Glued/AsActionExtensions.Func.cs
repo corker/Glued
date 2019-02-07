@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static class FuncAsActionExtensions
+    public static class AsActionExtensions
     {
         public static Action AsAction<TR>(this Func<TR> source)
         {

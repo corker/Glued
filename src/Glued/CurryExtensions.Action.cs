@@ -5,7 +5,7 @@ namespace Glued
     /// <summary>
     ///     https://weblogs.asp.net/dixin/functional-csharp-higher-order-function-currying-and-first-class-function
     /// </summary>
-    public static class ActionCurryExtensions
+    public static partial class CurryExtensions
     {
         public static Func<T1, Action<T2>>
             Curry<T1, T2>(this Action<T1, T2> action)

@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static class MapExtensions
+    public static partial class MapExtensions
     {
         public static TR
             Map<T, TR>(this T source, Func<T, TR> mapper)

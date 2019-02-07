@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Glued
 {
-    public static class FuncThenEachExtensions
+    public static partial class ThenEachExtensions
     {
         public static Func<IEnumerable<TR>> ThenEach<T, TR>(this Func<IEnumerable<T>> source, Func<Func<T>, TR> next)
         {

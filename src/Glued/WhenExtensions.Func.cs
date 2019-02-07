@@ -2,7 +2,7 @@ using System;
 
 namespace Glued
 {
-    public static class FuncWhenExtensions
+    public static partial class WhenExtensions
     {
         public static Func<TR>
             When<TR>(this Func<TR> source, Func<TR, bool> guard, Action<TR> action)

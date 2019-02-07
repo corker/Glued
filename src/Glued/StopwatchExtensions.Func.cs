@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Glued
 {
-    public static class FuncStopwatchExtensions
+    public static partial class StopwatchExtensions
     {
         public static Func<TR>
             Stopwatch<TR>(this Func<TR> source, Action<TR, Stopwatch> action)

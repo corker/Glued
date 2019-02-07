@@ -1,64 +1,68 @@
 ﻿using System;
 using FluentAssertions;
-using NSpec;
+
+// ReSharper disable InconsistentNaming
 
 namespace Glued.UnitTests.Actions
 {
-    public static class NSpecActionExtensions
+    public partial class describe_Extensions
     {
-        public static decimal T1(this nspec nspec)
-        {
-            return 1;
-        }
+        public static int T => int.MaxValue;
+        public static decimal TR => decimal.MaxValue;
+        public static TimeSpan T1 => TimeSpan.MaxValue;
+        public static string T2 => "T2";
+        public static DateTime T3 => DateTime.MaxValue;
+        public static bool T4 => true;
 
-        public static decimal T2(this nspec nspec)
+        public static Func<int, decimal> F1 => t =>
         {
-            return 2;
-        }
+            t.Should().Be(T);
+            return TR;
+        };
 
-        public static decimal T3(this nspec nspec)
+        public static Func<int, TimeSpan, decimal> F2 => (t, t1) =>
         {
-            return 3;
-        }
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            return TR;
+        };
 
-        public static decimal T4(this nspec nspec)
+        public static Func<int, TimeSpan, string, decimal> F3 => (t, t1, t2) =>
         {
-            return 4;
-        }
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            return TR;
+        };
 
-        public static Action<decimal> Action1(this nspec _)
+        public static Func<int, TimeSpan, string, DateTime, decimal> F4 => (t, t1, t2, t3) =>
         {
-            return t1 => { t1.Should().Be(_.T1()); };
-        }
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+            return TR;
+        };
 
-        public static Action<decimal, decimal> Action2(this nspec _)
+        public static Func<int, TimeSpan, string, DateTime, bool, decimal> F5 => (t, t1, t2, t3, t4) =>
         {
-            return (t1, t2) =>
-            {
-                t1.Should().Be(_.T1());
-                t2.Should().Be(_.T2());
-            };
-        }
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+            t4.Should().Be(T4);
+            return TR;
+        };
 
-        public static Action<decimal, decimal, decimal> Action3(this nspec _)
-        {
-            return (t1, t2, t3) =>
-            {
-                t1.Should().Be(_.T1());
-                t2.Should().Be(_.T2());
-                t3.Should().Be(_.T3());
-            };
-        }
+        public static Action<int> A1 => F1.AsAction();
+        public static Action<int, TimeSpan> A2 => F2.AsAction();
+        public static Action<int, TimeSpan, string> A3 => F3.AsAction();
+        public static Action<int, TimeSpan, string, DateTime> A4 => F4.AsAction();
+        public static Action<int, TimeSpan, string, DateTime, bool> A5 => F5.AsAction();
 
-        public static Action<decimal, decimal, decimal, decimal> Action4(this nspec _)
-        {
-            return (t1, t2, t3, t4) =>
-            {
-                t1.Should().Be(_.T1());
-                t2.Should().Be(_.T2());
-                t3.Should().Be(_.T3());
-                t4.Should().Be(_.T4());
-            };
-        }
+        public static Func<int, Action<TimeSpan>> FA1 => t => A2.Partial(t);
+        public static Func<int, Action<TimeSpan, string>> FA2 => t => A3.Partial(t).Uncurry();
+        public static Func<int, Action<TimeSpan, string, DateTime>> FA3 => t => A4.Partial(t).Uncurry();
+        public static Func<int, Action<TimeSpan, string, DateTime, bool>> FA4 => t => A5.Partial(t).Uncurry();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static class ActionAsFuncExtensions
+    public static class AsFuncExtensions
     {
         public static Func<TR> AsFunc<TR>(this TR @const)
         {
