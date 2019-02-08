@@ -17,8 +17,17 @@ namespace Glued.UnitTests.Actions
             it["Func<T1, T2, T3, T4, TR>"] = () => ((Action) (() => FE4.AsAction()(T1, T2, T3, T4))).ShouldThrow();
         }
 
-        // AsFunc
+        public void describe_AsFunc()
+        {
+            it["Func<TR>"] = () => TR.AsFunc()().Should().Be(TR);
+            it["Func<T1, TR>"] = () => A1.AsFunc(TR)(T).Should().Be(TR);
+            it["Func<T1, T2, TR>"] = () => A2.AsFunc(TR)(T, T1).Should().Be(TR);
+            it["Func<T1, T2, T3, TR>"] = () => A3.AsFunc(TR)(T, T1, T2).Should().Be(TR);
+            it["Func<T1, T2, T3, T4, TR>"] = () => A4.AsFunc(TR)(T, T1, T2, T3).Should().Be(TR);
+        }
+
         // AsOptional
+        // Cache
         // Curry
         public void describe_Do()
         {
@@ -36,6 +45,22 @@ namespace Glued.UnitTests.Actions
             it["Func<T, Action<T1, T2, T3, T4>>"] = () => T.Do(FA4)(T1, T2, T3, T4);
         }
 
+        public void describe_Map()
+        {
+            it["Func<T>"] = () => T.Map(F1).Should().Be(TR);
+            it["Func<T, T1>"] = () => T.Map(F2)(T1).Should().Be(TR);
+            it["Func<T, T1, T2>"] = () => T.Map(F3)(T1, T2).Should().Be(TR);
+            it["Func<T, T1, T2, T3>"] = () => T.Map(F4)(T1, T2, T3).Should().Be(TR);
+            it["Func<T, T1, T2, T3, T4>"] = () => T.Map(F5)(T1, T2, T3, T4).Should().Be(TR);
+            it["T"] = () => T.AsFunc().Map().Should().Be(T);
+            it["Func<T>"] = () => T.AsFunc().Map(F1).Should().Be(TR);
+            it["Func<T, T1>"] = () => T.AsFunc().Map(F2)(T1).Should().Be(TR);
+            it["Func<T, T1, T2>"] = () => T.AsFunc().Map(F3)(T1, T2).Should().Be(TR);
+            it["Func<T, T1, T2, T3>"] = () => T.AsFunc().Map(F4)(T1, T2, T3).Should().Be(TR);
+            it["Func<T, T1, T2, T3, T4>"] = () => T.AsFunc().Map(F5)(T1, T2, T3, T4).Should().Be(TR);
+        }
+
+        // MapEach
         // Partial
         // Stopwatch
         public void describe_Then()
@@ -55,18 +80,6 @@ namespace Glued.UnitTests.Actions
         // ThenDo
         // ThenEach
         // Uncurry
-        // Cache
-        // Curry
-        public void describe_Map()
-        {
-            it["Func<T>"] = () => T.Map(F1).Should().Be(TR);
-            it["Func<T, T1>"] = () => T.Map(F2)(T1).Should().Be(TR);
-            it["Func<T, T1, T2>"] = () => T.Map(F3)(T1, T2).Should().Be(TR);
-            it["Func<T, T1, T2, T3>"] = () => T.Map(F4)(T1, T2, T3).Should().Be(TR);
-            it["Func<T, T1, T2, T3, T4>"] = () => T.Map(F5)(T1, T2, T3, T4).Should().Be(TR);
-        }
-        // MapEach
-        // When
         // When
         // With
 
