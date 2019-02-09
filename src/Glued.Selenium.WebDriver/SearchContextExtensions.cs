@@ -12,9 +12,9 @@ namespace Glued.Selenium.WebDriver
             return () => source().FindElement(by);
         }
 
-        public static Func<IEnumerable<IWebElement>> FindElements(this Func<ISearchContext> source, By by)
+        public static Func<IEnumerable<Func<IWebElement>>> FindElements(this Func<ISearchContext> source, By by)
         {
-            return () => source().FindElements(by);
+            return () => source().FindElements(by).MapEach(_ => _.AsFunc());
         }
 
         public static Func<IWebElement> UntilElementFound(this Func<IWait<Func<IWebElement>>> source)

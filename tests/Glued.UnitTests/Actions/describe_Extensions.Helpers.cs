@@ -101,9 +101,9 @@ namespace Glued.UnitTests.Actions
         public static Action<int, TimeSpan, string, DateTime, bool> A5 => F5.AsAction();
 
         public static Func<int, Action<TimeSpan>> FA1 => t => A2.Partial(t);
-        public static Func<int, Action<TimeSpan, string>> FA2 => t => A3.Partial(t).Uncurry();
-        public static Func<int, Action<TimeSpan, string, DateTime>> FA3 => t => A4.Partial(t).Uncurry();
-        public static Func<int, Action<TimeSpan, string, DateTime, bool>> FA4 => t => A5.Partial(t).Uncurry();
+        public static Func<int, Action<TimeSpan, string>> FA2 => t => A3.Partial(t);
+        public static Func<int, Action<TimeSpan, string, DateTime>> FA3 => t => A4.Partial(t);
+        public static Func<int, Action<TimeSpan, string, DateTime, bool>> FA4 => t => A5.Partial(t);
 
         public static Func<decimal> FE0 => () => throw new TestException();
 
