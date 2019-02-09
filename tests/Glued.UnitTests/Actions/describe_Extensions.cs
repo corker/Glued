@@ -52,12 +52,6 @@ namespace Glued.UnitTests.Actions
             it["Func<T, T1, T2>"] = () => T.Map(F3)(T1, T2).Should().Be(TR);
             it["Func<T, T1, T2, T3>"] = () => T.Map(F4)(T1, T2, T3).Should().Be(TR);
             it["Func<T, T1, T2, T3, T4>"] = () => T.Map(F5)(T1, T2, T3, T4).Should().Be(TR);
-            it["T"] = () => T.AsFunc().Map().Should().Be(T);
-            it["Func<T>"] = () => T.AsFunc().Map(F1).Should().Be(TR);
-            it["Func<T, T1>"] = () => T.AsFunc().Map(F2)(T1).Should().Be(TR);
-            it["Func<T, T1, T2>"] = () => T.AsFunc().Map(F3)(T1, T2).Should().Be(TR);
-            it["Func<T, T1, T2, T3>"] = () => T.AsFunc().Map(F4)(T1, T2, T3).Should().Be(TR);
-            it["Func<T, T1, T2, T3, T4>"] = () => T.AsFunc().Map(F5)(T1, T2, T3, T4).Should().Be(TR);
         }
 
         // MapEach
@@ -70,11 +64,6 @@ namespace Glued.UnitTests.Actions
             it["Func<T, T1, T2, TR>"] = () => T.Then(F3)(T1, T2)().Should().Be(TR);
             it["Func<T, T1, T2, T3, TR>"] = () => T.Then(F4)(T1, T2, T3)().Should().Be(TR);
             it["Func<T, T1, T2, T3, T4, TR>"] = () => T.Then(F5)(T1, T2, T3, T4)().Should().Be(TR);
-            it["Func<Func<T>, TR>"] = () => T.AsFunc().Then(FF1)().Should().Be(TR);
-            it["Func<Func<T>, T1, TR>"] = () => T.AsFunc().Then(FF2)(T1)().Should().Be(TR);
-            it["Func<Func<T>, T1, T2, TR>"] = () => T.AsFunc().Then(FF3)(T1, T2)().Should().Be(TR);
-            it["Func<Func<T>, T1, T2, T3, TR>"] = () => T.AsFunc().Then(FF4)(T1, T2, T3)().Should().Be(TR);
-            it["Func<Func<T>, T1, T2, T3, T4, TR>"] = () => T.AsFunc().Then(FF5)(T1, T2, T3, T4)().Should().Be(TR);
         }
 
         // ThenDo

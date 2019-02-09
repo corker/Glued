@@ -7,9 +7,9 @@ namespace Glued
         public static Func<TR>
             When<TR>(this Func<TR> source, Func<TR, bool> guard, Action<TR> action)
         {
-            return () => source().Do(_ =>
+            return () => source().Do(tr =>
             {
-                if (guard(_)) action(_);
+                if (guard(tr)) action(tr);
             });
         }
 
