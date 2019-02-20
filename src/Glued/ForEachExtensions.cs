@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Glued
 {
-    public static partial class ForEachExtensions
+    public static class ForEachExtensions
     {
         public static void
             ForEach<T>(this IEnumerable<T> source, Action<T> action)

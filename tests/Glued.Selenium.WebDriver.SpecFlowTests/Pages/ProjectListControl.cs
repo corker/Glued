@@ -38,6 +38,6 @@ namespace Glued.Selenium.WebDriver.SpecFlowTests.Pages
                 .WithTimeout(5.Seconds())
                 .IgnoreExceptionTypes(typeof(WebDriverTimeoutException))
                 .WithMessage($"Package {value} not found.")
-                .Map(_ => _.MapEach().Any(x => x.Text == value));
+                .Map(_ => _.ThenMapEach().Any(x => x.Text == value));
     }
 }

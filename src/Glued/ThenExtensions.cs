@@ -2,7 +2,7 @@
 
 namespace Glued
 {
-    public static partial class ThenExtensions
+    public static class ThenExtensions
     {
         public static Func<TR>
             Then<T, TR>(this T t, Func<T, TR> next)

@@ -63,14 +63,14 @@ namespace Glued.UnitTests
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => _.Should().Be(Target).AsTask(),
+                    _ => _.Should().Be(Target),
                     _ => Task.CompletedTask
                 );
 
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => _.Should().Be(Target).AsTask(),
+                    _ => _.Should().Be(Target),
                     _ => { }
                 );
         }
@@ -81,14 +81,14 @@ namespace Glued.UnitTests
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => Expected.AsTask(),
+                    _ => Expected,
                     _ => _.Should().Be(Expected)
                 );
 
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => Expected.AsTask(),
+                    _ => Expected,
                     _ => _.Should().Be(Expected).AsTask()
                 );
         }
@@ -99,7 +99,7 @@ namespace Glued.UnitTests
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => _.ToString().AsTask(),
+                    _ => _.ToString(),
                     _ => Task.CompletedTask
                 )
                 .DoAsync(_ => _.Should().Be(Target));
@@ -107,7 +107,7 @@ namespace Glued.UnitTests
             await Target
                 .AsTask()
                 .WithAsync(
-                    _ => _.ToString().AsTask(),
+                    _ => _.ToString(),
                     _ => { }
                 )
                 .DoAsync(_ => _.Should().Be(Target));

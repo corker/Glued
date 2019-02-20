@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Glued
 {
-    public static partial class ForEachExtensions
+    public static class ThenForEachExtensions
     {
         public static Action
-            ForEach<T>(this Func<IEnumerable<T>> source, Action<T> action)
+            ThenForEach<T>(this Func<IEnumerable<T>> source, Action<T> action)
         {
             return () =>
             {
@@ -15,7 +15,7 @@ namespace Glued
         }
 
         public static Func<T1, Action>
-            ForEach<T, T1>(this Func<IEnumerable<T>> source, Action<T, T1> action)
+            ThenForEach<T, T1>(this Func<IEnumerable<T>> source, Action<T, T1> action)
         {
             return t1 => () =>
             {
@@ -24,7 +24,7 @@ namespace Glued
         }
 
         public static Func<T1, T2, Action>
-            ForEach<T, T1, T2>(this Func<IEnumerable<T>> source, Action<T, T1, T2> action)
+            ThenForEach<T, T1, T2>(this Func<IEnumerable<T>> source, Action<T, T1, T2> action)
         {
             return (t1, t2) => () =>
             {
@@ -33,7 +33,7 @@ namespace Glued
         }
 
         public static Func<T1, T2, T3, Action>
-            ForEach<T, T1, T2, T3>(this Func<IEnumerable<T>> source, Action<T, T1, T2, T3> action)
+            ThenForEach<T, T1, T2, T3>(this Func<IEnumerable<T>> source, Action<T, T1, T2, T3> action)
         {
             return (t1, t2, t3) => () =>
             {
