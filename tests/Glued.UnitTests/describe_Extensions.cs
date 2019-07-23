@@ -1,11 +1,14 @@
 ﻿using System;
 using FluentAssertions;
+using NSpec;
+using Xunit;
+using Xunit.Abstractions;
 
 // ReSharper disable InconsistentNaming
 
-namespace Glued.UnitTests.Actions
+namespace Glued.UnitTests
 {
-    public partial class describe_Extensions
+    public partial class describe_Extensions : nspec
     {
         public static int T => int.MaxValue;
         public static decimal TR => decimal.MaxValue;
@@ -94,11 +97,90 @@ namespace Glued.UnitTests.Actions
             return TR;
         };
 
-        public static Action<int> A1 => F1.AsAction();
-        public static Action<int, TimeSpan> A2 => F2.AsAction();
-        public static Action<int, TimeSpan, string> A3 => F3.AsAction();
-        public static Action<int, TimeSpan, string, DateTime> A4 => F4.AsAction();
-        public static Action<int, TimeSpan, string, DateTime, bool> A5 => F5.AsAction();
+        public static Action<int> A1 => t =>
+        {
+            t.Should().Be(T);
+        };
+
+        public static Action<int> A1Throw => t =>
+        {
+            t.Should().Be(T);
+            throw new TestException();
+        };
+
+        public static Action<int> A1Null => null;
+
+        public static Action<int, TimeSpan> A2 => (t, t1) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+        };
+
+        public static Action<int, TimeSpan> A2Throw => (t, t1) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            throw new TestException();
+        };
+
+        public static Action<int, TimeSpan> A2Null => null;
+
+        public static Action<int, TimeSpan, string> A3 => (t, t1, t2) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+        };
+
+        public static Action<int, TimeSpan, string> A3Throw => (t, t1, t2) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            throw new TestException();
+        };
+
+        public static Action<int, TimeSpan, string> A3Null => null;
+
+        public static Action<int, TimeSpan, string, DateTime> A4 => (t, t1, t2, t3) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+        };
+
+        public static Action<int, TimeSpan, string, DateTime> A4Throw => (t, t1, t2, t3) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+            throw new TestException();
+        };
+
+        public static Action<int, TimeSpan, string, DateTime> A4Null => null;
+
+        public static Action<int, TimeSpan, string, DateTime, bool> A5 => (t, t1, t2, t3, t4) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+            t4.Should().Be(T4);
+        };
+
+        public static Action<int, TimeSpan, string, DateTime, bool> A5Throw => (t, t1, t2, t3, t4) =>
+        {
+            t.Should().Be(T);
+            t1.Should().Be(T1);
+            t2.Should().Be(T2);
+            t3.Should().Be(T3);
+            t4.Should().Be(T4);
+            throw new TestException();
+        };
+
+        public static Action<int, TimeSpan, string, DateTime, bool> A5Null => null;
 
         public static Func<int, Action<TimeSpan>> FA1 => t => A2.Partial(t);
         public static Func<int, Action<TimeSpan, string>> FA2 => t => A3.Partial(t);
@@ -136,5 +218,35 @@ namespace Glued.UnitTests.Actions
             t4.Should().Be(T4);
             throw new TestException();
         };
+
+        // AsOptional
+        // Cache
+        // Curry
+
+        // MapEach
+        // Partial
+        // Stopwatch
+
+        // ThenDo
+        // ThenEach
+        // Uncurry
+        // When
+        // With
+
+        public class Run
+        {
+            public Run(ITestOutputHelper helper)
+            {
+                _helper = helper;
+            }
+
+            private readonly ITestOutputHelper _helper;
+
+            [Fact]
+            public void Specs()
+            {
+                _helper.Run<describe_Extensions>();
+            }
+        }
     }
 }

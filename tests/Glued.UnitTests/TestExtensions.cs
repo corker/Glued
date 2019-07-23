@@ -2,7 +2,7 @@
 using FluentAssertions;
 using FluentAssertions.Specialized;
 
-namespace Glued.UnitTests.Actions
+namespace Glued.UnitTests
 {
     public static class TestExtensions
     {

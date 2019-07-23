@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Glued.UnitTests.Actions
+namespace Glued.UnitTests
 {
     public class TestException : Exception
     {
