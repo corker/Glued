@@ -13,6 +13,10 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 
+environment:
+  COVERALLS_REPO_TOKEN:  
+    secure: '1p/k/TavKCVVUe6zEpFuv1+HHiZVp6f1ZkO1PKPB+ba+oy+qzD1WuQ9aksGOeMyn'
+
 nuget:
   project_feed: true
 
@@ -28,9 +32,15 @@ after_build:
   - cmd: dotnet pack src\Glued --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
   - cmd: dotnet pack src\Glued.Selenium.WebDriver --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
 
+before_test:
+  - cmd: dotnet tool install coveralls.net --version 1.0.0 --tool-path tools
+
 test_script:
-  - cmd: dotnet test tests\Glued.UnitTests\Glued.UnitTests.csproj --configuration %CONFIGURATION%
-  - cmd: dotnet test tests\Glued.Selenium.WebDriver.SpecFlowTests\Glued.Selenium.WebDriver.SpecFlowTests.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test tests\Glued.UnitTests --configuration %CONFIGURATION% /p:CoverletOutput="..\..\coverageUnitTests.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include="[Glued*]*"
+  - cmd: dotnet test tests\Glued.Selenium.WebDriver.SpecFlowTests --configuration %CONFIGURATION% /p:CoverletOutput="..\..\coverageSpecFlow.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include="[Glued*]*"
+
+after_test:
+  - cmd: tools\csmacnz.coveralls.exe --multiple -i "opencover=coverageUnitTests.xml;opencover=coverageSpecFlow.xml" --useRelativePaths
 
 artifacts:
   - path: nupkgs\*.nupkg

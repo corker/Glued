@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glued", "src\Glued\Glued.csproj", "{71A54ECF-EE9A-4AA9-B58D-FA79B11D0EC2}"
 EndProject
@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glued.Selenium.WebDriver", "src\Glued.Selenium.WebDriver\Glued.Selenium.WebDriver.csproj", "{16057558-22AF-4347-BD81-65F7FF7A1464}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glued.Selenium.WebDriver", "src\Glued.Selenium.WebDriver\Glued.Selenium.WebDriver.csproj", "{16057558-22AF-4347-BD81-65F7FF7A1464}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glued.Selenium.WebDriver.SpecFlowTests", "tests\Glued.Selenium.WebDriver.SpecFlowTests\Glued.Selenium.WebDriver.SpecFlowTests.csproj", "{B0A98530-3358-4194-8EBD-61E2CDA83A93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glued.Selenium.WebDriver.SpecFlowTests", "tests\Glued.Selenium.WebDriver.SpecFlowTests\Glued.Selenium.WebDriver.SpecFlowTests.csproj", "{B0A98530-3358-4194-8EBD-61E2CDA83A93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
