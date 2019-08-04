@@ -11,16 +11,35 @@ namespace Glued.UnitTests
     public partial class describe_Extensions : nspec
     {
         public static int T => int.MaxValue;
-        public static decimal TR => decimal.MaxValue;
         public static TimeSpan T1 => TimeSpan.MaxValue;
         public static string T2 => "T2";
         public static DateTime T3 => DateTime.MaxValue;
         public static bool T4 => true;
+        
+        public static decimal TR => decimal.MaxValue;
+        public static decimal TR1 => decimal.MinValue;
+        public static decimal TR2 => decimal.MinusOne;
+        public static decimal TR3 => decimal.One;
+
+        public static string CA1ThrowMessage = "CA1Throw";
+        public static string CA2ThrowMessage = "CA2Throw";
 
         public static Func<int, decimal> F1 => t =>
         {
             t.Should().Be(T);
             return TR;
+        };
+        
+        public static Func<int, decimal> F6 => t =>
+        {
+            t.Should().Be(T);
+            return TR1;
+        };
+
+        public static Func<int, decimal> F7 => t =>
+        {
+            t.Should().Be(T);
+            return TR2;
         };
 
         public static Func<int, TimeSpan, decimal> F2 => (t, t1) =>
@@ -217,6 +236,32 @@ namespace Glued.UnitTests
             t3.Should().Be(T3);
             t4.Should().Be(T4);
             throw new TestException();
+        };
+        
+        
+        public static Action<int> CA1Throw => t =>
+        {
+            t.Should().Be(T);
+            throw new TestException(CA1ThrowMessage);
+        };
+
+        public static Action<int> CA2Throw => t =>
+        {
+            t.Should().Be(T);
+            throw new TestException(CA2ThrowMessage);
+        };
+
+
+        public static Func<int, bool> GT => t =>
+        {
+            t.Should().Be(T);
+            return true;
+        };
+
+        public static Func<int, bool> GF => t =>
+        {
+            t.Should().Be(T);
+            return false;
         };
 
         // AsOptional
