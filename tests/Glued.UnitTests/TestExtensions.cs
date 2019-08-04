@@ -22,5 +22,10 @@ namespace Glued.UnitTests
         {
             return action.Should().Throw<TestException>();
         }
+        
+        public static ExceptionAssertions<TestException> ShouldThrow(this Action action, string message)
+        {
+            return action.Should().Throw<TestException>().WithMessage(message);
+        }
     }
 }
